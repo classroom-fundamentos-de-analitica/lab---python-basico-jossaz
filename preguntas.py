@@ -14,75 +14,64 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 def pregunta_01():
-    """
-    Retorne la suma de la segunda columna.
-
-    Rta/
-    214
-
-    """
+   suma = 0
+    with open('data.csv', 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            values = line.strip().split(',')
+            suma += int(values[1])
+    return suma
     return
 
 
 def pregunta_02():
-    """
-    Retorne la cantidad de registros por cada letra de la primera columna como la lista
-    de tuplas (letra, cantidad), ordendas alfabéticamente.
-
-    Rta/
-    [
-        ("A", 8),
-        ("B", 7),
-        ("C", 5),
-        ("D", 6),
-        ("E", 14),
-    ]
-
-    """
-    return
+    registros = {}
+    with open('data.csv', 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            values = line.strip().split(',')
+            letra = values[0]
+            if letra in registros:
+                registros[letra] += 1
+            else:
+                registros[letra] = 1
+    
+    registros_ordenados = sorted(registros.items())
+    return registros_ordenados
 
 
 def pregunta_03():
-    """
-    Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
-    de tuplas (letra, suma) ordendas alfabeticamente.
-
-    Rta/
-    [
-        ("A", 53),
-        ("B", 36),
-        ("C", 27),
-        ("D", 31),
-        ("E", 67),
-    ]
-
-    """
-    return
+    sumas = {}
+    with open('data.csv', 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            values = line.strip().split(',')
+            letra = values[0]
+            suma = int(values[1])
+            if letra in sumas:
+                sumas[letra] += suma
+            else:
+                sumas[letra] = suma
+    
+    sumas_ordenadas = sorted(sumas.items())
+    return sumas_ordenadas
 
 
 def pregunta_04():
-    """
-    La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
-    registros por cada mes, tal como se muestra a continuación.
-
-    Rta/
-    [
-        ("01", 3),
-        ("02", 4),
-        ("03", 2),
-        ("04", 4),
-        ("05", 3),
-        ("06", 3),
-        ("07", 5),
-        ("08", 6),
-        ("09", 3),
-        ("10", 2),
-        ("11", 2),
-        ("12", 3),
-    ]
-
-    """
-    return
+    registros_por_mes = {}
+    with open('data.csv', 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            values = line.strip().split(',')
+            fecha = values[2]
+            mes = fecha.split('-')[1]
+            if mes in registros_por_mes:
+                registros_por_mes[mes] += 1
+            else:
+                registros_por_mes[mes] = 1
+    
+    registros_ordenados = sorted(registros_por_mes.items())
+    return registros_ordenados
 
 
 def pregunta_05():
